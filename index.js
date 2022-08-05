@@ -7,13 +7,18 @@ app.get('/', (req, res) => {
     res.send("Ohiyo Onisan");
 })
 
-const refine = (req,res,next) => {
-    let value = products.inventory[0].productName;
-    res.send(value)
-    next();
-};
+// const refine = (req,res,next) => {
+//     let value = products.inventory[0].productName;
+//     res.send(value)
+//     next();
+// };
 
-app.use(refine); //This function is reserved for middleware
+// app.use(refine); //This function is reserved for middleware
+
+
+//Very Important MiddleWare
+app.use(express.json());
+app.use(express.urlencoded({extended:false}));
 
 //All products
 app.get('/api/products/:id', (req, res) => {
@@ -41,6 +46,8 @@ app.post('/api/addProduct/:id', (req,res) => {
         inStock: req.body.inStock,
         availStock: req.body.availStock
     }
+
+    res.send(newProduct);
 });
 
 const PORT = process.env.PORT || 5002;
