@@ -48,6 +48,27 @@ app.post('/api/addProduct/:id', (req,res) => {
     }
 
     res.send(newProduct);
+
+
+});
+
+//creating 
+app.post('/api/addproduct/:id', (req, res) => {
+    const newProduct = {
+        id: +req.params.id,
+        productName: req.body.productName,
+        inStock: req.body.inStock,
+        availStock: req.body.availStock
+    }
+
+    res.send(newProduct);
+    if(!newProduct.id || !newProduct.productName || !newProduct.inStock){
+        return res.status(400).json({msg: "You are missing some information dummy!"})
+    } else {
+        products.inventory.push(newProduct);
+        res.json(products);
+    }
+
 });
 
 const PORT = process.env.PORT || 5002;
