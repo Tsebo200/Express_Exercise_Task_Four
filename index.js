@@ -53,7 +53,7 @@ app.post('/api/addProduct/:id', (req,res) => {
 });
 
 //creating 
-app.post('/api/addproduct/:id', (req, res) => {
+app.post('/api/addProduct/:id', (req, res) => {
     const newProduct = {
         id: +req.params.id,
         productName: req.body.productName,
